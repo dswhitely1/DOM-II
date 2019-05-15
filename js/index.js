@@ -64,6 +64,7 @@ const randomColor = () => `rgb(${color()}, ${color()}, ${color()})`;
 
 Array.from(container).forEach(element =>
 	element.addEventListener('wheel', e => {
+		e.stopPropagation();
 		e.target.style.backgroundColor = randomColor();
 	}),
 );
@@ -135,3 +136,14 @@ newDiv.addEventListener('mouseover', e => {
 	};
 	const msgGone = setInterval(removeDisclaimer, 500);
 });
+const imageDrag = document.querySelectorAll('img');
+
+imageDrag.forEach(img => {
+	img.addEventListener('drag', e => {
+		e.currentTarget.style.display = 'none';
+	});
+});
+
+const navLinks = document.querySelectorAll('.nav-link');
+
+navLinks.forEach(element => element.addEventListener('click', e => e.preventDefault()));
